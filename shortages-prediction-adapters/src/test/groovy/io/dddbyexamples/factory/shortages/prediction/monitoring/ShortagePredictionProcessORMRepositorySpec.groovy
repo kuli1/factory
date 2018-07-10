@@ -1,23 +1,21 @@
 package io.dddbyexamples.factory.shortages.prediction.monitoring
 
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.Commit
 import io.dddbyexamples.factory.product.management.RefNoId
 import io.dddbyexamples.factory.shortages.prediction.Shortage
 import io.dddbyexamples.factory.shortages.prediction.calculation.ShortageForecasts
 import io.dddbyexamples.factory.shortages.prediction.monitoring.persistence.ShortagesDao
 import io.dddbyexamples.factory.shortages.prediction.monitoring.persistence.ShortagesEntity
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ActiveProfiles
 import spock.lang.Specification
 
-import javax.transaction.Transactional
 import java.time.LocalDateTime
 
 import static io.dddbyexamples.factory.shortages.prediction.monitoring.NewShortage.After.DemandChanged
 
-@SpringBootTest
-@Transactional
-@Commit
+@DataJpaTest
+@ActiveProfiles("test")
 class ShortagePredictionProcessORMRepositorySpec extends Specification {
 
     def now = LocalDateTime.now()
